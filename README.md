@@ -9,4 +9,4 @@ Visual Studio 2017 or newer
 .NET 6.0 SDK  
 Visual Studio 2017 or newer
 ## After server compilation
-Copy the files in the "CopyToServBin" folder to the root of the server binaries.
+Copy the files in the "CopytoServBin" folder to the root of the server binaries.

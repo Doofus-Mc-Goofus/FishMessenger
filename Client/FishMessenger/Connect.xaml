@@ -1,0 +1,34 @@
+﻿<Window x:Class="FishMessenger.Connect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FishMessenger"
+        mc:Ignorable="d"
+        Title="Connect to a Server - Fish Messenger" Height="300" Width="450" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <Rectangle VerticalAlignment="Top" Height="75">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA0DAFF"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="Title" Content="Connect to a server" HorizontalAlignment="Left" FontSize="16" Margin="5,5,0,0" FontFamily="Segoe UI Semilight" />
+        <Image x:Name="LoadingSirc" Source="/loadingcircle/tile000.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
+            <Image.Effect>
+                <DropShadowEffect ShadowDepth="0" Opacity="0.6" BlurRadius="4"/>
+            </Image.Effect>
+        </Image>
+        <Grid x:Name="EverythingElse">
+        <TextBlock x:Name="Desc" Text="Enter the URL to the server you want to enter, followed by it's server port.       You also may have to type in a room password to enter the room." Margin="10,35,10,0" TextWrapping="Wrap" />
+        <Label x:Name="UsernameHeader" Content="URL:" Margin="10,77,0,0" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="UsernameBox" Margin="10,100,10,0" Height="22" VerticalAlignment="Top" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
+        <Label x:Name="PasswordHeader" Content="Server Password (if required):" Margin="10,127,0,0" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="PasswordBox" Margin="10,150,10,0" Height="22" VerticalAlignment="Top" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
+        <TextBlock x:Name="UsernameError" Text="" Margin="10,177,10,32" FontFamily="Segoe UI Semibold" Foreground="#FFD83F3F" TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis"/>
+        <Button x:Name="Continue" Content="Connect" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="70" Click="Continue_Click"/>
+        </Grid>
+    </Grid>
+</Window>

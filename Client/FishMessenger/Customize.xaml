@@ -1,0 +1,166 @@
+﻿<Window x:Class="FishMessenger.Customize"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FishMessenger"
+        mc:Ignorable="d"
+        Title="Customize your Profile - Fish Messenger" Height="450" Width="620" ResizeMode="NoResize">
+    <Grid>
+        <Rectangle x:Name="Home_GradRect" VerticalAlignment="Top" Height="75" Fill="#FF5BBFFF">
+            <Rectangle.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        <Grid x:Name="Page" Width="602" Margin="2,0,0,0">
+            <Image x:Name="PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="64" Margin="15,29,0,0"/>
+            <TextBlock x:Name="Header" VerticalAlignment="Top" Margin="89,29,15,0" Text="Change your profile picture" FontSize="16" TextTrimming="CharacterEllipsis"/>
+            <Grid Margin="90,55,0,0">
+                <RadioButton x:Name="Choose" Content="Choose a profile picture" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" IsChecked="True" Checked="Choose_Checked"/>
+                <RadioButton x:Name="Upload" Content="Upload your own" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,17.5,0,0" IsChecked="False" Checked="Upload_Checked"/>
+            </Grid>
+            <Button x:Name="UploadButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="70" Content="Upload" Padding="0" Height="22" Margin="-8,30,19,0" Click="UploadButton_Click" />
+            <WrapPanel Margin="15,100,15,0">
+                <Grid x:Name="ChoosePFP"  VerticalAlignment="Top" Margin="0,0,0,5">
+                    <Label Content="Choose a profile picture" Padding="0" FontSize="16"/>
+                    <WrapPanel VerticalAlignment="Top" Margin="0,30,0,0" Height="48" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemWidth="52" ItemHeight="48">
+                        <Image x:Name="PFP_1" Source="/usertile1.png" Margin="0,0,4,0" MouseUp="PFP_1_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_2" Source="/usertile2.png" Margin="0,0,4,0" MouseUp="PFP_2_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_3" Source="/usertile3.png" Margin="0,0,4,0" MouseUp="PFP_3_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_4" Source="/usertile4.png" Margin="0,0,4,0" MouseUp="PFP_4_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_5" Source="/usertile5.png" Margin="0,0,4,0" MouseUp="PFP_5_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_6" Source="/usertile6.png" Margin="0,0,4,0" MouseUp="PFP_6_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_7" Source="/usertile7.png" Margin="0,0,4,0" MouseUp="PFP_7_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_8" Source="/usertile8.png" Margin="0,0,4,0" MouseUp="PFP_8_MouseUp" MouseEnter="PFP_MouseEnter" Cursor="Hand"/>
+                        <Image x:Name="PFP_9" Source="/usertile9.png" MouseUp="PFP_9_MouseUp" Width="48" MouseEnter="PFP_MouseEnter" Cursor="Hand" Margin="0,0,4,0"/>
+                        <Image x:Name="PFP_10" Source="/usertile10.png" MouseUp="PFP_10_MouseUp" Width="48" MouseEnter="PFP_MouseEnter" Cursor="Hand" Margin="0,0,4,0"/>
+                        <Image x:Name="PFP_11" Source="/usertile11.png" MouseUp="PFP_11_MouseUp" Width="48" MouseEnter="PFP_MouseEnter" Cursor="Hand" Margin="0,0,4,0"/>
+                    </WrapPanel>
+                    <Image x:Name="Arr" Source="/AR.png" Stretch="Fill" Width="8" Height="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0"/>
+                </Grid>
+                <Grid x:Name="ChooseColor"  VerticalAlignment="Top">
+                    <Label Content="Choose a profile color" Padding="0" FontSize="16"/>
+                    <WrapPanel VerticalAlignment="Top" Margin="0,30,0,0" Height="48" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemWidth="52" ItemHeight="48" Panel.ZIndex="1">
+                        <Rectangle x:Name="OverColor_1" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_1_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_2" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_2_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_3" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_3_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_4" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_4_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_5" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_5_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_6" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_6_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_7" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_7_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_8" Margin="0,0,4,0" MouseEnter="PFP_MouseEnter" Cursor="Hand" MouseUp="Color_8_MouseUp">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_9" Margin="0,0,4,0" Width="48" Cursor="Hand" MouseUp="Color_9_MouseUp" MouseEnter="PFP_MouseEnter">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_10" Margin="0,0,4,0" Width="48" Cursor="Hand" MouseUp="Color_10_MouseUp" MouseEnter="PFP_MouseEnter">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="OverColor_11" Width="48" Cursor="Hand" MouseUp="Color_11_MouseUp" MouseEnter="PFP_MouseEnter" Margin="0,0,4,0">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Bitmap602.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </WrapPanel>
+                    <WrapPanel VerticalAlignment="Top" Margin="0,30,0,0" Height="48" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemWidth="52" ItemHeight="48">
+                        <Rectangle x:Name="Color_1" Margin="0,0,4,0" Cursor="Hand" Fill="#FFFF5B88">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_2" Margin="0,0,4,0" Cursor="Hand" Fill="#FFFF905B">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_3" Margin="0,0,4,0" Cursor="Hand" Fill="#FFFFE25B">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_4" Margin="0,0,4,0" Cursor="Hand" Fill="#FF8DFF5B">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_5" Margin="0,0,4,0" Cursor="Hand" Fill="#FF4BE83E">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_6" Margin="0,0,4,0" Cursor="Hand" Fill="#FF5BBFFF">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_7" Margin="0,0,4,0" Cursor="Hand" Fill="#FF5B74FF">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_8" Margin="0,0,4,0" Cursor="Hand" Fill="#FF8D5BFF">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_9" Margin="0,0,4,0" Width="48" Cursor="Hand" Fill="#FFE05BFF">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_10" Margin="0,0,4,0" Width="48" Cursor="Hand" Fill="#FFFF9FEA">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Rectangle x:Name="Color_11" Width="48" Cursor="Hand" Fill="#FFA6C3D4" Margin="0,0,4,0">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/CustomizeColorOpacity.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </WrapPanel>
+                    <Image x:Name="Arr2" Source="/AR.png" Stretch="Fill" Width="8" Height="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0"/>
+                </Grid>
+            </WrapPanel>
+            <Button x:Name="Apply" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="70" Height="22" Padding="0" Content="Apply" Margin="0,0,19,10" Click="Apply_Click" />
+        </Grid>
+    </Grid>
+</Window>

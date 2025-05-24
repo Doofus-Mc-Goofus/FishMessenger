@@ -1,0 +1,27 @@
+﻿<Window x:Class="FishMessenger.Setup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FishMessenger"
+        mc:Ignorable="d"
+        Title="Setup" Height="300" Width="450" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <Rectangle VerticalAlignment="Top" Height="75">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA0DAFF"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="Title" Content="Welcome to the Fish Messenger Betta" HorizontalAlignment="Center" FontSize="16" Margin="0,5,0,0" FontFamily="Segoe UI Semilight" />
+        <TextBlock x:Name="Desc" Text="Thank you for trying out the Fish Messenger betta. To continue, you'll need to create a Fish Messenger account. Please enter the username and password you would like to use. You can change these at any time." Margin="10,35,10,0" TextWrapping="Wrap" />
+        <Label x:Name="UsernameHeader" Content="Username:" Margin="10,97,0,0" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="UsernameBox" Margin="10,120,10,0" Height="22" VerticalAlignment="Top" MaxLength="20" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
+        <Label x:Name="PasswordHeader" Content="Password:" Margin="10,147,0,0" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="PasswordBox" Margin="10,170,10,0" Height="22" VerticalAlignment="Top" MaxLength="20" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
+        <Label x:Name="UsernameError" Content="" Margin="10,197,0,0" FontFamily="Segoe UI Semibold" Padding="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFD83F3F"/>
+        <Button x:Name="Continue" Content="Continue" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="70" Click="Continue_Click"/>
+    </Grid>
+</Window>

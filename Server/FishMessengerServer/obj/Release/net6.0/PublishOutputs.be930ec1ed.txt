@@ -1,0 +1,11 @@
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\FishMessengerServer.exe
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\appsettings.json
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\FishMessengerServer.dll
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\FishMessengerServer.deps.json
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\FishMessengerServer.runtimeconfig.json
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\FishMessengerServer.pdb
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+H:\Users\Michael\source\repos\FishMessengerServer\FishMessengerServer\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

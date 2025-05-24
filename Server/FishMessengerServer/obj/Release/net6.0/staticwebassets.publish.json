@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "39b+nrMgyele/0sG2sAyQhUgVGvj83w/Im+TKJbPDq4=",
+  "Source": "FishMessengerServer",
+  "BasePath": "_content/FishMessengerServer",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

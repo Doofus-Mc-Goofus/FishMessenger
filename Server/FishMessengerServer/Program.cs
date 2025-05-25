@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 internal class Program
 {
-    public readonly string currentVer = "0.2.0";
     private static async Task Main(string[] args)
     {
 
@@ -32,6 +31,8 @@ internal class Program
 
         var connections = new List<WebSocket>();
 
+        var connectionsMemberAwait = new List<WebSocket>();
+
         var connectionsNames = new List<string>();
 
         var connectionsID = new List<string>();
@@ -48,6 +49,7 @@ internal class Program
                 string curID = string.Empty;
                 string curPFP = string.Empty;
                 string curPageCol = string.Empty;
+                string currentVer = "0.2.1";
                 using var webSocket = await context.WebSockets.AcceptWebSocketAsync();
                 connections.Add(webSocket);
                 await RecieveMessage(webSocket,
@@ -70,7 +72,16 @@ internal class Program
                                             if (!dataIni.KeyExists(obj["user"].ToString() + obj["ID"].ToString(), "UserKeys") || dataIni.Read(obj["user"].ToString() + obj["ID"].ToString(), "UserKeys") == obj["userpass"].ToString())
                                             {
                                                 Console.WriteLine("{\"pass\":\"200\",\"servname\":\"" + myIni.Read("name", "Server") + "\",\"desc\":\"" + myIni.Read("desc", "Server") + "\",\"max\":\"" + myIni.Read("max", "Server") + "\",\"timeout\":\"" + myIni.Read("chattimeout", "Server") + "\"}");
-                                                var bytes = Encoding.UTF8.GetBytes("{\"pass\":\"200\",\"servname\":\"" + myIni.Read("name", "Server") + "\",\"desc\":\"" + myIni.Read("desc", "Server") + "\",\"max\":\"" + myIni.Read("max", "Server") + "\",\"timeout\":\"" + myIni.Read("chattimeout", "Server") + "\",\"charlimit\":\"" + myIni.Read("charlimit", "Server") + "\"}");
+                                                string pass;
+                                                if (obj["curVer"].ToString() != currentVer)
+                                                {
+                                                    pass = "201";
+                                                }
+                                                else
+                                                {
+                                                    pass = "200";
+                                                }
+                                                var bytes = Encoding.UTF8.GetBytes("{\"pass\":\"" + pass + "\",\"servname\":\"" + myIni.Read("name", "Server") + "\",\"desc\":\"" + myIni.Read("desc", "Server") + "\",\"max\":\"" + myIni.Read("max", "Server") + "\",\"timeout\":\"" + myIni.Read("chattimeout", "Server") + "\",\"charlimit\":\"" + myIni.Read("charlimit", "Server") + "\"}");
                                                 var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
                                                 await webSocket.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
                                                 curName = obj["user"].ToString();
@@ -88,6 +99,8 @@ internal class Program
                                                 connectionsID.Add(curID);
                                                 connectionsPFP.Add(curPFP);
                                                 connectionsCol.Add(curPageCol);
+                                                await UpdateMemberList();
+
                                             }
                                             else
                                             {
@@ -141,6 +154,11 @@ internal class Program
                                     var bytes = Encoding.UTF8.GetBytes(memlist);
                                     var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
                                     await webSocket.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+                                    connectionsMemberAwait.Add(webSocket);
+                                }
+                                else if (obj["key"].ToString() == "CloseMemberRequest")
+                                {
+                                    connectionsMemberAwait.Remove(webSocket);
                                 }
                                 else
                                 {
@@ -167,8 +185,17 @@ internal class Program
                             connectionsID.Remove(curID);
                             connectionsPFP.Remove(curPFP);
                             connectionsCol.Remove(curPageCol);
+                            try
+                            {
+                                connectionsMemberAwait.Remove(webSocket);
+                            }
+                            catch
+                            {
+
+                            }
                             long unixTimestamp = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                             await Broadcast("{\"key\":\"ServMess\",\"date\":\"" + DateTimeOffset.FromUnixTimeSeconds(unixTimestamp).ToString() + "\",\"mess\":\"" + curName + " left the room" + "\"}");
+                            await UpdateMemberList();
                             await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
                         }
                     });
@@ -189,6 +216,31 @@ internal class Program
             }
         }
 
+        async Task UpdateMemberList()
+        {
+            string memlist = "{}";
+            var array = JObject.Parse(memlist);
+            for (var i = 0; i < connectionsNames.Count; i++)
+            {
+                array.Add(i + "Name", connectionsNames[i]);
+                array.Add(i + "ID", connectionsID[i]);
+                array.Add(i + "PFP", connectionsPFP[i]);
+                array.Add(i + "Col", connectionsCol[i]);
+            }
+            array.Add("Count", connectionsNames.Count.ToString());
+            array.Add("key", "MemberUpdate");
+            memlist = JsonConvert.SerializeObject(array, Formatting.None);
+            Console.WriteLine(memlist);
+            var bytes = Encoding.UTF8.GetBytes(memlist);
+            foreach (var socket in connectionsMemberAwait)
+            {
+                if (socket.State == WebSocketState.Open)
+                {
+                    var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
+                    await socket.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+                }
+            }
+        }
         async Task Broadcast(string message)
         {
             IniFile myIni = new IniFile("data.ini");

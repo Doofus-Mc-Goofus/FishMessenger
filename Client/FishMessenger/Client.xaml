@@ -36,7 +36,7 @@
             <Button x:Name="Invite" Content="Invitations" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="6,0,0,0" Padding="5,1,5,1" Visibility="Collapsed"/>
             <Button x:Name="MemList" Content="Member List" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="5,1,5,1" Margin="6,0,0,0" Click="MemList_Click"/>
         </WrapPanel>
-        <ListBox x:Name="ChatBox" Margin="15,60,15,59" HorizontalContentAlignment="Stretch">
+        <ListBox x:Name="ChatBox" Margin="15,60,15,59" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <WrapPanel x:Name="Sample_Serv" HorizontalAlignment="Left">
                 <TextBlock Text="Server Message" TextWrapping="Wrap" Foreground="Gray" FontStyle="Italic"/>
             </WrapPanel>
@@ -49,6 +49,18 @@
                     <TextBlock Text="Message" TextWrapping="Wrap"/>
                 </WrapPanel>
                 <TextBlock Text="11/11/1111 11:11:11 PM" Foreground="Gray" Margin="0,0,2,0" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid>
+                <Image Source="/usertile1.png" Width="32" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="User" FontWeight="Bold" VerticalAlignment="Top" Margin="37,0,0,0"/>
+                <TextBlock Text="11/11/1111 11:11:11 PM" Foreground="Gray" Margin="0,0,2,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <RichTextBox Padding="0" BorderThickness="0" Margin="0,15,0,0" Background="{x:Null}" IsReadOnly="True" IsHitTestVisible="False">
+                    <FlowDocument>
+                        <Paragraph TextIndent="32">
+                            <Run>Message</Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
             </Grid>
         </ListBox>
         <TextBox x:Name="TheChatBoxSender" Margin="15,0,66,25" VerticalAlignment="Bottom" Height="22" FontStyle="Italic" Foreground="#FF202020" Padding="0" VerticalContentAlignment="Center" Text="" MaxLength="500" TextChanged="TheChatBoxSender_TextChanged" KeyUp="TheChatBoxSender_KeyUp"/>

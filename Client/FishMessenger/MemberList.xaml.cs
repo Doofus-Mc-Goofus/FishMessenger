@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -23,6 +25,7 @@ namespace FishMessenger
 
         public void Pass(JObject List, Client client, WebSocket ws)
         {
+            InsertGerder.Items.Clear();
             try
             {
                 webSocket = ws;
@@ -109,12 +112,15 @@ namespace FishMessenger
             catch
             {
                 MessageBox.Show("Error");
+                Close();
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            var bytes = Encoding.UTF8.GetBytes("{\"key\":\"CloseMemberRequest\"" + "}");
+            var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
+            webSocket.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

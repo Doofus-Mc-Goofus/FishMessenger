@@ -40,7 +40,7 @@ namespace FishMessenger
         private DispatcherTimer dispatcherTimer2;
         public readonly HttpClient client = new HttpClient();
         public string username;
-        public readonly string currentVer = "0.1.8";
+        public readonly string currentVer = "0.2.1";
         int ingus = 0;
         public MainWindow()
         {
@@ -216,7 +216,7 @@ namespace FishMessenger
                 ini.Write("Count", "0", "Servers");
                 ini.Write("Ver", currentVer, "User");
             }
-            else if (oldVer == "0.1.7")
+            else if (oldVer == "0.1.7" || oldVer == "0.1.8" || oldVer == "0.1.9" || oldVer == "0.2.0")
             {
                 ini.Write("Ver", currentVer, "User");
             }

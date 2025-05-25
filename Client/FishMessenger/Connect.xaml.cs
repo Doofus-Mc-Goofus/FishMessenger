@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using ChecksumGen;
 using INI;
 using Newtonsoft.Json.Linq;
+using TaskDialogInterop;
 namespace FishMessenger
 {
     /// <summary>
@@ -162,7 +163,7 @@ namespace FishMessenger
                 var ws = new ClientWebSocket();
                 await ws.ConnectAsync(new Uri(URL + "/ws"), CancellationToken.None);
                 var buffer = new byte[1024 * 16];
-                var bytes = Encoding.UTF8.GetBytes("{\"key\":\"Join\",\"ID\":\"" + ID + "\",\"user\":\"" + name + "\",\"pass\":\"" + PasswordBox.Text + "\",\"userpass\":\"" + pass + "\",\"pfp\":\"" + iniFile.Read("PFP", "User") + "\",\"col\":\"" + iniFile.Read("PageColor", "User") + "\"}");
+                var bytes = Encoding.UTF8.GetBytes("{\"key\":\"Join\",\"ID\":\"" + ID + "\",\"user\":\"" + name + "\",\"pass\":\"" + PasswordBox.Text + "\",\"userpass\":\"" + pass + "\",\"pfp\":\"" + iniFile.Read("PFP", "User") + "\",\"col\":\"" + iniFile.Read("PageColor", "User") + "\",\"curVer\":\"" + iniFile.Read("Ver", "User") + "\"}");
                 if (ws.State == WebSocketState.Open)
                 {
                     var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
@@ -177,6 +178,25 @@ namespace FishMessenger
                     Client clientWindow = new Client();
                     clientWindow.Show();
                     clientWindow.Pass(this, ws, buffer, name, obj["servname"].ToString(), obj["desc"].ToString(), obj["timeout"].ToString(), obj["charlimit"].ToString(), mainWindow, ID);
+                }
+                else if (obj["pass"].ToString() == "201")
+                {
+                    TaskDialogOptions config = new TaskDialogOptions
+                    {
+                        Title = "Compatibility Warning",
+                        MainInstruction = "This server is meant to be used with a different version of Fish Messenger",
+                        Content = "This does not prevent you from connecting, but you may come across issues. Are you sure you want to continue?",
+                        CommonButtons = TaskDialogCommonButtons.YesNo,
+                        MainIcon = VistaTaskDialogIcon.Warning
+                    };
+                    var test = TaskDialog.Show(config);
+                    if (test.Result == TaskDialogSimpleResult.Yes)
+                    {
+                        Client clientWindow = new Client();
+                        clientWindow.Show();
+                        clientWindow.Pass(this, ws, buffer, name, obj["servname"].ToString(), obj["desc"].ToString(), obj["timeout"].ToString(), obj["charlimit"].ToString(), mainWindow, ID);
+                    }
+
                 }
                 else if (obj["pass"].ToString() == "403")
                 {

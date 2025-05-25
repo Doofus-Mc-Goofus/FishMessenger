@@ -38,7 +38,6 @@
                 </LinearGradientBrush>
             </Rectangle.OpacityMask>
         </Rectangle>
-        <TextBlock VerticalAlignment="Top" Margin="15,11,15,0" Text="Member List" FontSize="16" TextTrimming="CharacterEllipsis"/>
-        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="5,1,5,1" Margin="0,10,10,0" Click="Button_Click"/>
+        <TextBlock VerticalAlignment="Top" Margin="10,11,15,0" Text="Member List" FontSize="16" TextTrimming="CharacterEllipsis"/>
     </Grid>
 </Window>

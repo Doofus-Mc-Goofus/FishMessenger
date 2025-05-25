@@ -24,10 +24,12 @@ namespace FishMessenger
         int timeOut = 1;
         DispatcherTimer timeOutTimer = new DispatcherTimer();
         MediaPlayer ServMess = new MediaPlayer();
+        MediaPlayer ServErr = new MediaPlayer();
         MediaPlayer Recieve = new MediaPlayer();
         MediaPlayer Send = new MediaPlayer();
         string lastSentMessage = string.Empty;
         MainWindow mainWindow;
+        MemberList GlobalMemberList;
         int timeOutTicker;
         int charlimit = 500;
         string name;
@@ -40,6 +42,7 @@ namespace FishMessenger
             timeOutTimer.Interval = TimeSpan.FromSeconds(1);
             timeOutTimer.Start();
             ServMess.Open(new Uri(@"ServMess.wav", UriKind.RelativeOrAbsolute));
+            ServErr.Open(new Uri(@"ServErr.wav", UriKind.RelativeOrAbsolute));
             Recieve.Open(new Uri(@"boop2.wav", UriKind.RelativeOrAbsolute));
             Send.Open(new Uri(@"0004.wav", UriKind.RelativeOrAbsolute));
         }
@@ -144,6 +147,11 @@ namespace FishMessenger
                         MemberList memberList = new MemberList();
                         memberList.Show();
                         memberList.Pass(obj, this, ws);
+                        GlobalMemberList = memberList;
+                    }
+                    else if (obj["key"].ToString() == "MemberUpdate")
+                    {
+                        GlobalMemberList.Pass(obj, this, ws);
                     }
                     else
                     {
@@ -254,9 +262,9 @@ namespace FishMessenger
             textBlock.FontStyle = FontStyles.Italic;
             servMessWrap.Children.Add(textBlock);
             ChatBox.Items.Add(servMessWrap);
-            ServMess.Stop();
-            ServMess.Position = new TimeSpan(0, 0, 0);
-            ServMess.Play();
+            ServErr.Stop();
+            ServErr.Position = new TimeSpan(0, 0, 0);
+            ServErr.Play();
         }
 
         private void TheChatBoxSender_TextChanged(object sender, TextChangedEventArgs e)

@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Fish Messenger Betta" Height="480" Width="640" Closing="Window_Closing" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
+        Title="Fish Messenger Betta" Height="480" Width="640" Closing="Window_Closing" Closed="Window_Closed" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     <Grid>
         <Grid x:Name="Loading" Panel.ZIndex="0" Visibility="Hidden">
             <Image Source="/5039.png" Stretch="Fill" Opacity="1" Margin="-20,0,-20,0"/>
-            <Image x:Name="LoadingSirc" Source="/loadingcircle/tile000.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-20,0,0">
+            <Image x:Name="LoadingSirc" Source="/loadingcircle/tile000.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-1,-21,0,0">
                 <Image.Effect>
                     <DropShadowEffect ShadowDepth="0" Opacity="0.6" BlurRadius="4"/>
                 </Image.Effect>
@@ -42,7 +42,8 @@
                     <MenuItem Header="About Fish Messenger" Click="MenuItem_Click"/>
                 </MenuItem>
             </Menu>
-            <Image x:Name="Home_PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="64" Margin="15,29,0,0"/>
+            <Image x:Name="Home_PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="52" Margin="21,35,0,0"/>
+            <Image x:Name="Home_PFPFrame" Source="/FrameMain.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="90" Margin="2,17,0,0" ClipToBounds="True"/>
             <TextBlock x:Name="Home_Username" VerticalAlignment="Top" Margin="89,29,15,0" Text="WWWWWWWWWWWWWWWWWWWW" FontSize="16" TextTrimming="CharacterEllipsis"/>
             <TextBlock x:Name="Home_Realname" VerticalAlignment="Top" Margin="89,49,15,0" Text="WWWWWWWWWWWWWWWWWWWW#12345" TextTrimming="CharacterEllipsis" Foreground="Black" FontFamily="Segoe UI Semilight"/>
             <TextBlock x:Name="Home_Status" VerticalAlignment="Top" Margin="89,64,15,0" Text="■ Online" TextTrimming="CharacterEllipsis" Foreground="#FF24980C" HorizontalAlignment="Left"/>

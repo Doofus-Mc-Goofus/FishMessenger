@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.WebSockets;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,16 +13,20 @@ namespace FishMessenger
     /// </summary>
     public partial class MemberList : Window
     {
+        public WebSocket webSocket;
+        public Client client;
         public MemberList()
         {
             InitializeComponent();
             InsertGerder.Items.Clear();
         }
 
-        public void Pass(JObject List, Client client)
+        public void Pass(JObject List, Client client, WebSocket ws)
         {
             try
             {
+                webSocket = ws;
+                this.client = client;
                 Title = "Member List - " + client.Home_Username.Text + " - Fish Messenger";
                 for (var i = 0; i < int.Parse(List["Count"].ToString()); i++)
                 {
@@ -33,7 +38,7 @@ namespace FishMessenger
                     Rectangle BackG = new Rectangle();
                     BackG.VerticalAlignment = VerticalAlignment.Top;
                     BackG.Height = 50;
-                    BackG.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5BBFFF"));
+                    BackG.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(List[i + "Col"].ToString()));
                     BackG.OpacityMask = new LinearGradientBrush
                     {
                         StartPoint = new Point(0.5, 0),
@@ -55,25 +60,33 @@ namespace FishMessenger
                     PFP.VerticalAlignment = VerticalAlignment.Top;
                     PFP.Width = 40;
                     PFP.Height = 40;
-                    PFP.Margin = new Thickness(10, 5, 0, 0);
+                    PFP.Margin = new Thickness(10, 9, 0, 0);
                     grid.Children.Add(PFP);
+                    Image PFPFrame = new Image();
+                    PFPFrame.Source = new BitmapImage(new Uri("pack://application:,,,/FrameSmall.png"));
+                    PFPFrame.HorizontalAlignment = HorizontalAlignment.Left;
+                    PFPFrame.VerticalAlignment = VerticalAlignment.Top;
+                    PFPFrame.Width = 64;
+                    PFPFrame.Height = 64;
+                    PFPFrame.Margin = new Thickness(-2, -2, 0, 0);
+                    grid.Children.Add(PFPFrame);
                     TextBlock UserName = new TextBlock();
                     UserName.VerticalAlignment = VerticalAlignment.Top;
-                    UserName.Margin = new Thickness(57, 5, 15, 0);
+                    UserName.Margin = new Thickness(59, 5, 15, 0);
                     UserName.Text = List[i + "Name"].ToString();
                     UserName.FontSize = 16;
                     UserName.TextTrimming = TextTrimming.CharacterEllipsis;
                     grid.Children.Add(UserName);
                     TextBlock Realname = new TextBlock();
                     Realname.VerticalAlignment = VerticalAlignment.Top;
-                    Realname.Margin = new Thickness(57, 25, 15, 0);
+                    Realname.Margin = new Thickness(59, 25, 15, 0);
                     Realname.Text = List[i + "Name"].ToString() + "#" + List[i + "ID"].ToString();
                     Realname.TextTrimming = TextTrimming.CharacterEllipsis;
                     Realname.FontFamily = new FontFamily("Segoe UI Semilight");
                     grid.Children.Add(Realname);
                     WrapPanel wrapper = new WrapPanel();
                     wrapper.HorizontalAlignment = HorizontalAlignment.Right;
-                    wrapper.Margin = new Thickness(0, 5, 10, 15);
+                    wrapper.Margin = new Thickness(0, 5, 8, 15);
                     wrapper.VerticalAlignment = VerticalAlignment.Top;
                     TextBlock Status = new TextBlock();
                     Status.VerticalAlignment = VerticalAlignment.Center;
@@ -97,6 +110,17 @@ namespace FishMessenger
             {
                 MessageBox.Show("Error");
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            client.MemList_Click(sender, e);
+            Close();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FishMessenger"
         mc:Ignorable="d"
-        Title="Customize your Profile - Fish Messenger" Height="450" Width="620" ResizeMode="NoResize">
+        Title="Customize your Profile - Fish Messenger" Height="450" Width="620" ResizeMode="NoResize" SnapsToDevicePixels="True">
     <Grid>
         <Rectangle x:Name="Home_GradRect" VerticalAlignment="Top" Height="75" Fill="#FF5BBFFF">
             <Rectangle.OpacityMask>
@@ -16,7 +16,9 @@
             </Rectangle.OpacityMask>
         </Rectangle>
         <Grid x:Name="Page" Width="602" Margin="2,0,0,0">
-            <Image x:Name="PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="64" Margin="15,29,0,0"/>
+            <Image x:Name="PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="52" Margin="21,35,0,0"/>
+            <Image x:Name="Home_PFPFrame" Source="/FrameMain.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="90" Margin="2,17,0,0" ClipToBounds="True"/>
+
             <TextBlock x:Name="Header" VerticalAlignment="Top" Margin="89,29,15,0" Text="Change your profile picture" FontSize="16" TextTrimming="CharacterEllipsis"/>
             <Grid Margin="90,55,0,0">
                 <RadioButton x:Name="Choose" Content="Choose a profile picture" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" IsChecked="True" Checked="Choose_Checked"/>

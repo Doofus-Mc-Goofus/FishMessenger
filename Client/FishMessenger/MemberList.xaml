@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FishMessenger"
         mc:Ignorable="d"
-        Title="MemberList" Height="600" Width="500">
+        Title="MemberList" Height="600" Width="500" Closing="Window_Closing" SnapsToDevicePixels="True">
     <Grid>
-        <ListBox x:Name="InsertGerder" Padding="-2" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}">
+        <ListBox x:Name="InsertGerder" Padding="-2" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}" Margin="0,45,0,0">
             <ListBoxItem Padding="0">
                 <Grid>
                     <Rectangle x:Name="Home_GradRect" VerticalAlignment="Top" Height="50" Fill="#FF5BBFFF">
@@ -18,10 +18,11 @@
                             </LinearGradientBrush>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Image x:Name="Home_PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="40" Margin="10,5,0,0"/>
-                    <TextBlock x:Name="Home_Username" VerticalAlignment="Top" Margin="57,5,15,0" Text="WWWWWWWWWWWWWWWWWWWW" FontSize="16" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock x:Name="Home_Realname" VerticalAlignment="Top" Margin="57,25,15,0" Text="WWWWWWWWWWWWWWWWWWWW#12345" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI Semilight"/>
-                    <WrapPanel x:Name="MainPanel" HorizontalAlignment="Right" Margin="0,5,10,15" VerticalAlignment="Top">
+                    <Image x:Name="Home_PFP" Source="/usertile1.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="40" Margin="10,9,0,0"/>
+                    <Image x:Name="Home_PFPFrame" Source="/FrameSmall.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="64" Margin="-2,-2,0,0"/>
+                    <TextBlock x:Name="Home_Username" VerticalAlignment="Top" Margin="59,5,15,0" Text="WWWWWWWWWWWWWWWWWWWW" FontSize="16" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="Home_Realname" VerticalAlignment="Top" Margin="59,25,15,0" Text="WWWWWWWWWWWWWWWWWWWW#12345" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI Semilight"/>
+                    <WrapPanel x:Name="MainPanel" HorizontalAlignment="Right" Margin="0,5,8,15" VerticalAlignment="Top">
                         <TextBlock x:Name="Home_Status" VerticalAlignment="Center" Text="■ Online" TextTrimming="CharacterEllipsis" Foreground="#FF24980C" TextAlignment="Right" HorizontalAlignment="Right" Margin="6,0,0,0"/>
                         <Grid Width="2" Height="21.28"/>
                     </WrapPanel>
@@ -29,5 +30,15 @@
             </ListBoxItem>
 
         </ListBox>
+        <Rectangle VerticalAlignment="Top" Height="45" Fill="#FF5BBFFF">
+            <Rectangle.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#BF000000"/>
+                    <GradientStop Color="#3FFFFFFF" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        <TextBlock VerticalAlignment="Top" Margin="15,11,15,0" Text="Member List" FontSize="16" TextTrimming="CharacterEllipsis"/>
+        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="5,1,5,1" Margin="0,10,10,0" Click="Button_Click"/>
     </Grid>
 </Window>

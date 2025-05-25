@@ -161,8 +161,8 @@ namespace FishMessenger
                 }
                 var ws = new ClientWebSocket();
                 await ws.ConnectAsync(new Uri(URL + "/ws"), CancellationToken.None);
-                var buffer = new byte[1024 * 4];
-                var bytes = Encoding.UTF8.GetBytes("{\"key\":\"Join\",\"ID\":\"" + ID + "\",\"user\":\"" + name + "\",\"pass\":\"" + PasswordBox.Text + "\",\"userpass\":\"" + pass + "\",\"pfp\":\"" + iniFile.Read("PFP", "User") + "\"}");
+                var buffer = new byte[1024 * 16];
+                var bytes = Encoding.UTF8.GetBytes("{\"key\":\"Join\",\"ID\":\"" + ID + "\",\"user\":\"" + name + "\",\"pass\":\"" + PasswordBox.Text + "\",\"userpass\":\"" + pass + "\",\"pfp\":\"" + iniFile.Read("PFP", "User") + "\",\"col\":\"" + iniFile.Read("PageColor", "User") + "\"}");
                 if (ws.State == WebSocketState.Open)
                 {
                     var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);

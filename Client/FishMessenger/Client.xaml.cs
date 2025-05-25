@@ -143,7 +143,7 @@ namespace FishMessenger
                     {
                         MemberList memberList = new MemberList();
                         memberList.Show();
-                        memberList.Pass(obj, this);
+                        memberList.Pass(obj, this, ws);
                     }
                     else
                     {
@@ -314,7 +314,7 @@ namespace FishMessenger
             }
         }
 
-        private async void MemList_Click(object sender, RoutedEventArgs e)
+        public async void MemList_Click(object sender, RoutedEventArgs e)
         {
             var bytes = Encoding.UTF8.GetBytes("{\"key\":\"MemberRequest\"" + "}");
             if (webSocket.State == WebSocketState.Open)

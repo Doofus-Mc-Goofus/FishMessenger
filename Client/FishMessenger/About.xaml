@@ -9,7 +9,7 @@
     <Grid>
         <Image HorizontalAlignment="Left" Width="105" Source="/fish.ico" Stretch="UniformToFill"/>
         <Label Content="Fish Messenger" Margin="110,5,0,0" Padding="0,0,0,0" FontSize="16" />
-        <Label Content="Version 0.1.9 Betta Build" Margin="110,25,0,0" Padding="0,0,0,0" />
-        <TextBlock Text="Do not distribute without explicit permission." Margin="110,50,0,0" Padding="0,0,0,0" TextWrapping="Wrap" />
+        <Label Content="Version 0.2.0 Betta Build" Margin="110,25,0,0" Padding="0,0,0,0" />
+        <TextBlock Text="This program is licensed under the GPLv3 license." Margin="110,50,0,0" Padding="0,0,0,0" TextWrapping="Wrap" />
     </Grid>
 </Window>

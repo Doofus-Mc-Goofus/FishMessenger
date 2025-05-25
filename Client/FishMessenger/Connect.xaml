@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FishMessenger"
         mc:Ignorable="d"
-        Title="Connect to a Server - Fish Messenger" Height="300" Width="450" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="Connect to a Server - Fish Messenger" Height="300" Width="450" ResizeMode="NoResize" Closing="Window_Closing" SnapsToDevicePixels="True">
     <Grid>
         <Rectangle VerticalAlignment="Top" Height="75">
             <Rectangle.Fill>
@@ -16,7 +16,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="Title" Content="Connect to a server" HorizontalAlignment="Left" FontSize="16" Margin="5,5,0,0" FontFamily="Segoe UI Semilight" />
-        <Image x:Name="LoadingSirc" Source="/loadingcircle/tile000.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
+        <Image x:Name="LoadingSirc" Source="/loadingcircle/tile000.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1,1,0,0" Visibility="Hidden">
             <Image.Effect>
                 <DropShadowEffect ShadowDepth="0" Opacity="0.6" BlurRadius="4"/>
             </Image.Effect>

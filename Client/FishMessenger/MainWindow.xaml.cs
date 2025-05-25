@@ -262,6 +262,7 @@ namespace FishMessenger
             IniFile iniFile = new IniFile("config.ini");
             Home_Username.Text = iniFile.Read("Name", "User");
             username = iniFile.Read("Name", "User");
+            Home_Realname.Text = iniFile.Read("Name", "User") + "#" + iniFile.Read("ID", "User");
             Home_PFP.Source = new BitmapImage(new Uri(iniFile.Read("PFP", "User")));
             Home_GradRect.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(iniFile.Read("PageColor", "User")));
             Startup.Play();

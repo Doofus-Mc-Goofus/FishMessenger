@@ -38,6 +38,8 @@ internal class Program
 
         var connectionsPFP = new List<string>();
 
+        var connectionsCol = new List<string>();
+
         app.Map("/ws", async context =>
         {
             if (context.WebSockets.IsWebSocketRequest)
@@ -45,6 +47,7 @@ internal class Program
                 string curName = string.Empty;
                 string curID = string.Empty;
                 string curPFP = string.Empty;
+                string curPageCol = string.Empty;
                 using var webSocket = await context.WebSockets.AcceptWebSocketAsync();
                 connections.Add(webSocket);
                 await RecieveMessage(webSocket,
@@ -73,6 +76,7 @@ internal class Program
                                                 curName = obj["user"].ToString();
                                                 curID = obj["ID"].ToString();
                                                 curPFP = obj["pfp"].ToString();
+                                                curPageCol = obj["col"].ToString();
                                                 long unixTimestamp = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                                                 await Broadcast("{\"key\":\"ServMess\",\"date\":\"" + DateTimeOffset.FromUnixTimeSeconds(unixTimestamp).ToString() + "\",\"mess\":\"" + curName + " joined the room" + "\"}");
                                                 if (!dataIni.KeyExists(obj["user"].ToString() + obj["ID"].ToString(), "UserKeys"))
@@ -82,7 +86,8 @@ internal class Program
                                                 dataIni.Write(obj["user"].ToString() + obj["ID"].ToString() + "PFP", obj["pfp"].ToString(), "UserKeys");
                                                 connectionsNames.Add(curName);
                                                 connectionsID.Add(curID);
-                                                connectionsPFP.Add(obj["pfp"].ToString());
+                                                connectionsPFP.Add(curPFP);
+                                                connectionsCol.Add(curPageCol);
                                             }
                                             else
                                             {
@@ -127,6 +132,7 @@ internal class Program
                                         array.Add(i + "Name", connectionsNames[i]);
                                         array.Add(i + "ID", connectionsID[i]);
                                         array.Add(i + "PFP", connectionsPFP[i]);
+                                        array.Add(i + "Col", connectionsCol[i]);
                                     }
                                     array.Add("Count", connectionsNames.Count.ToString());
                                     array.Add("key", "MemberResponse");
@@ -160,6 +166,7 @@ internal class Program
                             connectionsNames.Remove(curName);
                             connectionsID.Remove(curID);
                             connectionsPFP.Remove(curPFP);
+                            connectionsCol.Remove(curPageCol);
                             long unixTimestamp = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                             await Broadcast("{\"key\":\"ServMess\",\"date\":\"" + DateTimeOffset.FromUnixTimeSeconds(unixTimestamp).ToString() + "\",\"mess\":\"" + curName + " left the room" + "\"}");
                             await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
@@ -174,7 +181,7 @@ internal class Program
 
         async Task RecieveMessage(WebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage)
         {
-            var buffer = new byte[1024 * 4];
+            var buffer = new byte[1024 * 16];
             while (socket.State == WebSocketState.Open)
             {
                 var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);

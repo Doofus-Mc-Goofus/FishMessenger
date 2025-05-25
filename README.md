@@ -1,5 +1,6 @@
 # Fish Messenger
-The Fish (blub)
+The Fish (blub)  
+Please remember that this is an early alpha, and everything is subject to change.
 
 # How to compile
 ## Client Prequisites
